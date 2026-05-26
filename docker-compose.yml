@@ -1,0 +1,25 @@
+# services: define todos los contenedores (servicios) que Docker Compose va a orquestar
+services:
+
+  # Nombre lógico del servicio dentro de Docker Compose (usado para redes internas y dependencias)
+  weather-app:
+
+    # Nombre real del contenedor que aparecerá al ejecutar `docker ps`
+    container_name: app-web-clima-realtime
+
+    # build: indica que la imagen se construye localmente (no se descarga de Docker Hub)
+    build:
+      context: .          # El contexto de construcción es el directorio actual (raíz del proyecto)
+      dockerfile: Dockerfile  # Nombre del archivo Dockerfile a usar para construir la imagen
+
+    # ports: mapea puertos entre el host (tu máquina) y el contenedor
+    ports:
+      - "8081:80"  # Puerto 8081 de tu PC → Puerto 80 del contenedor (donde Nginx escucha)
+                   # Accedés a la app en: http://localhost:8081
+
+    # env_file: carga variables de entorno desde un archivo externo al contenedor en tiempo de ejecución
+    env_file:
+      - .env       # Lee el archivo .env del directorio actual (contiene VITE_WEATHER_API_KEY, etc.)
+
+    # restart: política de reinicio automático del contenedor si se detiene
+    restart: unless-stopped  # Se reinicia siempre, EXCEPTO si fue detenido manualmente con `docker stop`

@@ -1,0 +1,36 @@
+# Dependencias
+node_modules
+.pnpm-debug.log*
+#pnpm-lock.yaml
+
+# Compilación y builds
+dist
+build
+
+# Variables de entorno (Seguridad)
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Git
+.git
+.gitignore
+
+# Herramientas de desarrollo y tests
+tests/
+.eslintconfig.js
+README.md
+00-memory-bank.md
+prompts/
+
+# Otros
+.DS_Store
