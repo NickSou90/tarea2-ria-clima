@@ -21,6 +21,12 @@ RUN npm install -g pnpm && pnpm install --frozen-lockfile
 # Se hace después de instalar dependencias para maximizar el uso de caché de Docker
 COPY . .
 
+# 1. Declarar el argumento (lo recibe del compose)
+ARG VITE_WEATHER_API_KEY 
+
+# 2. Convertirlo en variable de entorno para el proceso de Node
+ENV VITE_WEATHER_API_KEY=$VITE_WEATHER_API_KEY
+
 # Ejecutamos el build de producción con Vite (genera la carpeta /app/dist con archivos estáticos)
 RUN pnpm build
 

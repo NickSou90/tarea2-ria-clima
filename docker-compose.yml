@@ -11,6 +11,8 @@ services:
     build:
       context: .          # El contexto de construcción es el directorio actual (raíz del proyecto)
       dockerfile: Dockerfile  # Nombre del archivo Dockerfile a usar para construir la imagen
+      args: # Aquí mapeamos la variable de tu .env real a la construcción
+        - VITE_WEATHER_API_KEY=${VITE_WEATHER_API_KEY}
 
     # ports: mapea puertos entre el host (tu máquina) y el contenedor
     ports:
